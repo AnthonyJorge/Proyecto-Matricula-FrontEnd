@@ -1,36 +1,34 @@
 <div class="container">
-    <form  class="mat-dialog-content"  id="iFormCurso" [formGroup]="formsRegistra" >
+    <form  class="mat-dialog-content"  id="iFormCurso" [formGroup]="formActualiza" >
       <div class="row">
             <mat-toolbar color="primary" >    
-              <span>Registra Curso</span>    
+              <span>Actualiza Curso</span>    
             </mat-toolbar>  
       </div>
-      <div  class="row"  style="margin-top: 3%">
+      <div  class="row"  style="margin-top: 5%">
                 <mat-form-field class="col-md-8">
                     <mat-label>Nombre</mat-label>
                     <input  matInput [(ngModel)] ="objCurso.nombre"  formControlName="validaNombre" name="nombre" >
-                    <mat-hint style="color:red" *ngIf="formsRegistra.controls.validaNombre.touched">
-                        <span *ngIf="formsRegistra.controls.validaNombre.hasError('required')">
+                    <mat-hint style="color:red" *ngIf="formActualiza.controls.validaNombre.touched">
+                        <span *ngIf="formActualiza.controls.validaNombre.hasError('required')">
                         El Nombre es requerido
                         </span>
-                        <span *ngIf="formsRegistra.controls.validaNombre.hasError('pattern')">
+                        <span *ngIf="formActualiza.controls.validaNombre.hasError('pattern')">
                         El Nombre es 3 a 30 caracteres
                         </span>
                     </mat-hint>
                 </mat-form-field>
-        </div>
-        <div class="row" style="margin-top: 3%">
     
             <mat-form-field class="col-md-4">
                 <mat-label>Grado</mat-label>
                 <mat-select [(ngModel)] = "objCurso.grado!.idGrado" formControlName="validaGrado" name="grado">
                     <mat-option value="-1"> [Seleccione] </mat-option>
-                    <mat-option  *ngFor="let x of lstgrado"  [value]="x.idGrado">
+                    <mat-option  *ngFor="let x of lstGrado"  [value]="x.idGrado">
                         {{x.nombre}}
                     </mat-option> 
                 </mat-select>
-                <mat-hint style="color:red" *ngIf="formsRegistra.controls.validaGrado.touched" >
-                    <span *ngIf="formsRegistra.controls.validaGrado.hasError('min')">
+                <mat-hint style="color:red" *ngIf="formActualiza.controls.validaGrado.touched" >
+                    <span *ngIf="formActualiza.controls.validaGrado.hasError('min')">
                         El grado es requerido
                     </span>
                 </mat-hint>  
@@ -41,10 +39,10 @@
                 <button mat-raised-button 
                         type="submit" 
                         color="primary" 
-                        (click)="insertarCurso()"  
-                        [disabled]="formsRegistra.invalid"
+                        (click)="actualizarCurso()"  
+                        [disabled]="formActualiza.invalid"
                         [mat-dialog-close]="1">
-                        Registra
+                        Actualiza
                 </button>
                 <button mat-button 
                         (click)="onNoClick()"

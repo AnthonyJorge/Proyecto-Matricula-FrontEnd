@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -9,18 +9,31 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app.material.module';
 import { AppComponent } from './app.component';
-import { MantenimientoCurso } from './components/add-cursos/add-cursos.component';
-import { MantenimientoDocente } from './components/add-docentes/add-docentes.component';
-import { MantenimientoAlumno } from './components/add-alumnos/add-alumnos.component';
-import { MantenimientoMatricula } from './components/add-matriculas/add-matriculas.component';
+import { CrudAlumnoComponent } from './components/crud-alumno/crud-alumno.component';
+import { CrudCursosComponent } from './components/crud-cursos/crud-cursos.component';
+import { CrudDocenteComponent } from './components/crud-docente/crud-docente.component';
+import { CrudMatriculaComponent } from './components/crud-matricula/crud-matricula.component';
+import { UpdateCursosComponent } from './components/update-cursos/update-cursos.component';
+import { MatIconModule } from '@angular/material/icon';
+import { addCursos } from './components/add-cursos/add-cursos.component';
+import { ProdInterceptorService } from './interceptors/prod-interceptor.service';
+import { LoginComponent } from './auth/login.component';
+import { MenuComponent } from './menu/menu.component';
+import { IndexComponent } from './index/index.component';
 
 @NgModule({
   declarations: [
+    LoginComponent,
+    MenuComponent,
+    IndexComponent,
+    
     AppComponent,
-    MantenimientoCurso,
-    MantenimientoDocente,
-    MantenimientoAlumno,
-    MantenimientoMatricula
+    CrudAlumnoComponent,
+    CrudCursosComponent,
+    CrudDocenteComponent,
+    CrudMatriculaComponent,
+    addCursos,
+    UpdateCursosComponent,
   ],
   imports: [
     BrowserModule, 
@@ -28,11 +41,14 @@ import { MantenimientoMatricula } from './components/add-matriculas/add-matricul
     HttpClientModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     AppRoutingModule,
-    AppMaterialModule
+    AppMaterialModule,
+    MatIconModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ProdInterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

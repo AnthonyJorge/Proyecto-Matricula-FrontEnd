@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <a class="navbar-brand" href="#"><img src="./assets/colegio.png"></a>
+    <button class="navbar-toggler" 
+            type="button" 
+            data-toggle="collapse" 
+            data-target="#navbarNav" 
+            aria-controls="navbarNav" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav" >
+      <ul class="navbar-nav">
+      <li class="nav-item " *ngIf="!isLogged">
+        <a class="nav-link"  routerLink="/login"><img src="./assets/iniciar-sesion.png"> Iniciar Sesión</a>
+      
+    </li>
+  </ul>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarNav" style="padding-left: 52%;">
+      <ul class="navbar-nav">
+        
+      
+     
+
+        <li class="nav-item dropdown" *ngIf="isLogged">
+       
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-expanded="false"
+          > <img src="./assets/mantenimiento.png">
+            Mantenimiento
+          </a>
+         
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+               <a *ngFor="let item of opcMantenimiento"  routerLink="/{{ item.ruta }}" class="dropdown-item"  >
+                        {{ item.nombre }} 
+                </a>
+          </div>
+        </li>
+       
+
+        <li class="nav-item dropdown" *ngIf="isLogged">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-expanded="false"
+          ><img src="./assets/consulta.png">
+            Consultas
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+               <a *ngFor="let item of opcConsulta"  routerLink="/{{ item.ruta }}" class="dropdown-item"  >
+                        {{ item.nombre }} 
+                </a>
+          </div>
+        </li>
+
+      <li class="nav-item dropdown" *ngIf="isLogged">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-expanded="false"
+        ><img src="./assets/reporte.png">
+          Reporte
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+             <a *ngFor="let item of opcReporte"  routerLink="/{{ item.ruta }}" class="dropdown-item"  >
+                      {{ item.nombre }} 
+              </a>
+        </div>
+      </li>
+      
+      
+      <li class="nav-item" *ngIf="isLogged" (click)="onLogOut()" >
+        <a class="nav-link"  href="#" style="cursor: pointer"><img src="./assets/cerrar-sesion.png"> Cerrar Sesión</a>
+     
+    </ul>
+
+
+    </div>
+  </nav>
