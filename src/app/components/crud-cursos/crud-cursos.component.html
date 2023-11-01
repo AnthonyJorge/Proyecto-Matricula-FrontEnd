@@ -1,6 +1,5 @@
 <app-menu></app-menu>
 <div class="container mat-elevation-z8" >
-   
     <div class="row">
         
         <mat-toolbar style="background-color: rgb(48, 52, 52);">    
@@ -13,7 +12,7 @@
             <mat-label>Nombre Curso</mat-label>
             <input matInput [(ngModel)]="filtro">
             <button *ngIf="filtro" matSuffix mat-icon-button aria-label="Clear" (click)="filtro=''">
-              <mat-icon>close</mat-icon>
+            <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
 
@@ -26,8 +25,8 @@
 
     <div class="row" style="margin-top: 3% ; margin-left:3px">
         <button mat-raised-button color="primary" type="button"  (click)="openAddCursos()" class='btn btn-primary btn-sm' style="width: 150px">
-          Registrar  <mat-icon>add</mat-icon></button>      
- </div>
+        Registrar  <mat-icon>add</mat-icon></button>      
+</div>
 
         <div class="row" style="margin-top: 3%">
             
@@ -56,21 +55,20 @@
 
                         <button mat-icon-button color="accent" (click)="UpdateCurso(aux)">
                             <mat-icon aria-label="Edit">edit</mat-icon>
-                         </button>
-                  
-                         <button mat-icon-button color="accent" (click)="eliminarCurso(aux)">
+                        </button>
+                
+                        <button mat-icon-button color="accent" (click)="eliminarCurso(aux)">
                             <mat-icon aria-label="Delete">delete</mat-icon>
-                          </button>
+                        </button>
                     </mat-cell>
-                  </ng-container>
+                </ng-container>
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
 
             </mat-table>
             <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
-
-          </div>
+</div>
 
 
 </div>

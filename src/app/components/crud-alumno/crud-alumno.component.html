@@ -1,1 +1,90 @@
-<p>crud-alumno works!</p>
+<app-menu></app-menu>
+<div class="container mat-elevation-z8" >
+    <div class="row">
+        <mat-toolbar style="background-color: rgb(48, 52, 52);">    
+        <span style="color: rgb(255, 255, 255);"> Mantenimiento de  Alumnos </span>    
+        </mat-toolbar>  
+    </div>
+
+    <div class="search">
+        <mat-form-field > 
+            <mat-label>Nombre Alumno</mat-label>
+            <input matInput [(ngModel)]="filtro">
+            <button *ngIf="filtro" matSuffix mat-icon-button aria-label="Clear" (click)="filtro=''">
+        <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <button mat-mini-fab matTooltip="Accent" class="buttom-primary" (click)="consultarAlumno()" 
+                    id="id_btn_filtrar"  aria-label="Example mini fab with a heart icon">
+                        <mat-icon>search</mat-icon>
+        </button>
+
+    </div>
+
+    <div class="row" style="margin-top: 3% ; margin-left:3px">
+        <button mat-raised-button color="primary" type="button"  (click)="openAddAlumno()" class='btn btn-primary btn-sm' style="width: 150px">
+        Registrar  <mat-icon>add</mat-icon></button>      
+    </div>
+
+        <div class="row" style="margin-top: 3%">
+            
+            <mat-table  #table  class="mat-cell" [dataSource]="dataSource" >
+                <ng-container matColumnDef="idAlumno">
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef >Id</mat-header-cell>
+                    <mat-cell *matCellDef="let aux" >{{ aux.idAlumno  }}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="nombre">
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef >Nombre</mat-header-cell>
+                    <mat-cell *matCellDef="let aux" >{{ aux.nombre}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="apellidos">
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef >apellidos</mat-header-cell>
+                    <mat-cell *matCellDef="let aux" >{{ aux.apellidoMa + aux.apellidoPa}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="edad">
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef >Edad</mat-header-cell>
+                    <mat-cell *matCellDef="let aux" >{{ aux.edad }}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="dni">
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef >DNI</mat-header-cell>
+                    <mat-cell *matCellDef="let aux" >{{ aux.dni}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="sexo">
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef >Sexo</mat-header-cell>
+                    <mat-cell *matCellDef="let aux" >{{ aux.sexo!.nombre }}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="fechaNacimiento">
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef >Fecha Nacimiento</mat-header-cell>
+                    <mat-cell *matCellDef="let aux" >{{ aux.fechaNacimiento | date:"dd/MM/yyyy"}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Fecha">
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef >Fecha</mat-header-cell>
+                    <mat-cell *matCellDef="let aux" >{{ aux.fechaRegistro | date:"dd/MM/yyyy"}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="acciones">
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef >Acciones</mat-header-cell>
+
+                    <mat-cell *matCellDef="let aux; let i=index;">
+
+                        <button mat-icon-button color="accent" (click)="UpdateAlumno(aux)">
+                            <mat-icon aria-label="Edit">edit</mat-icon>
+                        </button>
+                
+                        <button mat-icon-button color="accent" (click)="eliminarAlumno(aux)">
+                            <mat-icon aria-label="Delete">delete</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
+
+        </div>
+
+
+</div>

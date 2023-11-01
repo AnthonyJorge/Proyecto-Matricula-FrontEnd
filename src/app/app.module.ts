@@ -20,6 +20,12 @@ import { ProdInterceptorService } from './interceptors/prod-interceptor.service'
 import { LoginComponent } from './auth/login.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
+import { addAlumnos } from './components/add-alumnos/add-alumnos.component';
+import { UpdateAlumnosComponent } from './components/update-alumnos/update-alumnos.component';
+import { UpdateDocentesComponent } from './components/update-docentes/update-docentes.component';
+import { UpdateMatriculasComponent } from './components/update-matriculas/update-matriculas.component';
+import { addDocente } from './components/add-docentes/add-docentes.component';
+import { addMatricula } from './components/add-matriculas/add-matriculas.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +39,13 @@ import { IndexComponent } from './index/index.component';
     CrudDocenteComponent,
     CrudMatriculaComponent,
     addCursos,
+    addAlumnos,
+    addDocente,
+    addMatricula,
+    UpdateAlumnosComponent,
     UpdateCursosComponent,
+    UpdateDocentesComponent,
+    UpdateMatriculasComponent
   ],
   imports: [
     BrowserModule, 

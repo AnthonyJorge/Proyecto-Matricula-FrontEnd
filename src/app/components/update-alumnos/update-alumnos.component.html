@@ -1,0 +1,114 @@
+<div class="container">
+    <form  class="mat-dialog-content"  id="iFormAlumno" [formGroup]="formActualiza" >
+    <div class="row">
+            <mat-toolbar color="primary" >    
+            <span>Actualiza Alumno</span>    
+            </mat-toolbar>  
+    </div>
+    <div  class="row"  style="margin-top: 5%">
+        <mat-form-field class="col-md-8">
+                <mat-label>Nombre</mat-label>
+                <input  matInput [(ngModel)] ="objAlumno.nombre"  formControlName="validaNombre" name="nombre" >
+                <mat-hint style="color:red" *ngIf="formActualiza.controls.validaNombre.touched">
+                    <span *ngIf="formActualiza.controls.validaNombre.hasError('required')">
+                    El Nombre es requerido
+                    </span>
+                    <span *ngIf="formActualiza.controls.validaNombre.hasError('pattern')">
+                    El Nombre es 3 a 30 caracteres
+                    </span>
+                </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="col-md-8">
+            <mat-label>Apellido Materno</mat-label>
+            <input  matInput [(ngModel)] ="objAlumno.apellidoMa"  formControlName="validaApellidoMa" name="apellidoMa" >
+            <mat-hint style="color:red" *ngIf="formActualiza.controls.validaNombre.touched">
+                <span *ngIf="formActualiza.controls.validaApellidoMa.hasError('required')">
+                El Apellido Materno es requerido
+                </span>
+                <span *ngIf="formActualiza.controls.validaApellidoMa.hasError('pattern')">
+                El Apellido Materno es 3 a 30 caracteres
+                </span>
+            </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="col-md-8">
+            <mat-label>Apellido Paterno</mat-label>
+            <input  matInput [(ngModel)] ="objAlumno.apellidoPa"  formControlName="validaApellidoPa" name="apellidoPa" >
+            <mat-hint style="color:red" *ngIf="formActualiza.controls.validaApellidoPa.touched">
+                <span *ngIf="formActualiza.controls.validaNombre.hasError('required')">
+                El Apellido Paterno es requerido
+                </span>
+                <span *ngIf="formActualiza.controls.validaApellidoPa.hasError('pattern')">
+                El Apellido Paterno es 3 a 30 caracteres
+                </span>
+            </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="col-md-8">
+                <mat-label>Edad</mat-label>
+                <input  matInput [(ngModel)] ="objAlumno.edad"  formControlName="validaEdad" name="edad" >
+                <mat-hint style="color:red" *ngIf="formActualiza.controls.validaNombre.touched">
+                    <span *ngIf="formActualiza.controls.validaEdad.hasError('required')">
+                    La Edad es requerido
+                    </span>
+                    <span *ngIf="formActualiza.controls.validaEdad.hasError('pattern')">
+                    La Edad es 1 a 2 caracteres
+                    </span>
+                </mat-hint>
+        </mat-form-field>
+                <mat-form-field class="col-md-8">
+                    <mat-label>DNI</mat-label>
+                    <input  matInput [(ngModel)] ="objAlumno.dni"  formControlName="validaDNI" name="dni" >
+                    <mat-hint style="color:red" *ngIf="formActualiza.controls.validaNombre.touched">
+                        <span *ngIf="formActualiza.controls.validaDNI.hasError('required')">
+                        El DNI es requerido y que sea números
+                        </span>
+                        <span *ngIf="formActualiza.controls.validaDNI.hasError('pattern')">
+                        El DNI es  8 caracteres
+                        </span>
+                    </mat-hint>
+                </mat-form-field>
+        <mat-form-field class="col-md-4">
+            <mat-label>Fecha de Nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="objAlumno.fechaNacimiento" [max]="fechaNacimiento" formControlName="validaFechaNacimiento" name="fechaNacimiento">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-hint style="color:red" *ngIf="formActualiza.controls.validaFechaNacimiento.touched">
+                    <span *ngIf="formActualiza.controls.validaFechaNacimiento.hasError('required')">
+                    La fecha es requerido
+                    </span>
+                    
+                </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="col-md-4">
+            <mat-label>Sexo</mat-label>
+            <mat-select [(ngModel)] = "objAlumno.sexo!.idSexo" formControlName="validaSexo" name="sexo">
+                <mat-option value="-1"> [Seleccione] </mat-option>
+                <mat-option  *ngFor="let x of lstSexo"  [value]="x.idSexo">
+                    {{x.nombre}}
+                </mat-option> 
+            </mat-select>
+            <mat-hint style="color:red" *ngIf="formActualiza.controls.validaSexo.touched" >
+                <span *ngIf="formActualiza.controls.validaSexo.hasError('min')">
+                    El Sexo es requerido
+                </span>
+            </mat-hint>  
+        </mat-form-field> 
+    </div>
+
+    <div  mat-dialog-actions>
+            <button mat-raised-button 
+                    type="submit" 
+                    color="primary" 
+                    (click)="actualizarAlumno()"  
+                    [disabled]="formActualiza.invalid"
+                    [mat-dialog-close]="1">
+                    Registra
+            </button>
+            <button mat-button 
+                    (click)="onNoClick()"
+                    color="primary">
+                    Salir
+            </button>
+    </div>
+
+    </form>
+</div>

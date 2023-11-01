@@ -19,8 +19,12 @@ export class DocentesService {
     return this.http.get<Docentes[]>(baseUrl + "/listarDocentePorNombre/" + filtro);
   }
 
-  agregarDocente(obj:Docentes):Observable<any> {
-    return this.http.post(baseUrl + "/agregarDocente" , obj);
+  listarDocente():Observable<Docentes[]>{
+    return this.http.get<Docentes[]>(baseUrl)
+  }
+
+  agregarDocente(obj:Docentes):Observable<any>{
+    return this.http.post(baseUrl, obj);
   }
 
   actualizarDocente(obj:Docentes):Observable<any>{

@@ -13,7 +13,7 @@ const routes: Routes = [
   {path:"verCrudDocente", component:CrudDocenteComponent},
   {path:"verCrudAlumno", component:CrudAlumnoComponent},
   {path:"verCrudMatricula", component:CrudMatriculaComponent},
-  
+
   { path: '', component: IndexComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }

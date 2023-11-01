@@ -5,11 +5,8 @@ export class Alumnos {
     nombre?:String;
     apellidoMa?:String;
     apellidoPa?:String;
-    edad?:number;
-    dni?:number;
-    fechaNacimiento?:Date;
+    edad?:string;
+    dni?:string;
+    fechaNacimiento?:String;
     sexo?: Sexo;
-
-
-
 }

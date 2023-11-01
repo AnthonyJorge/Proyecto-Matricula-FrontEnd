@@ -4,5 +4,5 @@ export class Cursos {
     idCurso?: number;
     nombre?:String;
     grado?:Grado;
-    
 }
+

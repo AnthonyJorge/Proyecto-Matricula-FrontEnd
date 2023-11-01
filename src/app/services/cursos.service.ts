@@ -19,7 +19,7 @@ export class CursosService {
     return this.http.get<Cursos[]>(baseUrl + '/listarCursoPorNombre/' + filtro);
   }
 
-  listadoLibro():Observable<Cursos[]>{
+  listarCurso():Observable<Cursos[]>{
     return this.http.get<Cursos[]>(baseUrl)
   }
 

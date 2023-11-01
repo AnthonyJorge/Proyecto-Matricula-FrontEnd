@@ -7,8 +7,9 @@ export class Docentes {
     apellidoMa?:String;
     apellidoPa?:String;
     curso?:Cursos;
-    telefono?:number;
-    dni?:number;
+    edad?:String;
+    telefono?:String;
+    dni?:String;
     correo?:String;
     sexo?:Sexo;
 }

@@ -21,9 +21,7 @@ export class CrudCursosComponent implements OnInit {
 
   //Para el filtro 
   filtro: string ="";
-  //grado
-  lstgrado:Cursos[] = [];
-
+  
   objUsuario: Usuario = {};
 
   //filtro
@@ -41,7 +39,6 @@ export class CrudCursosComponent implements OnInit {
       this.objUsuario.idUsuario = tokenService.getUserId();
     }
 
- 
 
   ngOnInit():void{}
 
@@ -86,7 +83,6 @@ export class CrudCursosComponent implements OnInit {
   }
 
   UpdateCurso(obj:Cursos){
-   
 
     const dialogRef = this.dialogServices.open(UpdateCursosComponent,{data:obj});
 

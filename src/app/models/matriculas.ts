@@ -12,5 +12,4 @@ export class Matriculas {
     precio?:number;
     descuento?:number;
     precioTotal?:number;
-    
 }

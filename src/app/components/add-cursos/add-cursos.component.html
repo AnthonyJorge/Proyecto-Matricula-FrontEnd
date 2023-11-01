@@ -1,11 +1,11 @@
 <div class="container">
     <form  class="mat-dialog-content"  id="iFormCurso" [formGroup]="formsRegistra" >
-      <div class="row">
+    <div class="row">
             <mat-toolbar color="primary" >    
-              <span>Registra Curso</span>    
+            <span>Registra Curso</span>    
             </mat-toolbar>  
-      </div>
-      <div  class="row"  style="margin-top: 3%">
+    </div>
+        <div  class="row"  style="margin-top: 3%">
                 <mat-form-field class="col-md-8">
                     <mat-label>Nombre</mat-label>
                     <input  matInput [(ngModel)] ="objCurso.nombre"  formControlName="validaNombre" name="nombre" >
@@ -53,5 +53,5 @@
                 </button>
         </div>
 
-      </form>
-  </div>
+    </form>
+</div>

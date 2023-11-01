@@ -19,7 +19,7 @@ export class addCursos {
 
   //Grado
   lstgrado:Grado[] = [];
-
+  //Usuario
   objUsuario: Usuario = {};
 
     //Json para registrar o actualizar

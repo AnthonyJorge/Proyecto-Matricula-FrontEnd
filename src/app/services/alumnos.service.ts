@@ -17,8 +17,12 @@ export class AlumnosService {
     return this.htpp.get<Alumnos[]>(baseUrl + "/listarAlumnoPorNombre/" +filtro);
   }
 
+  listarAlumno():Observable<Alumnos[]>{
+    return this.htpp.get<Alumnos[]>(baseUrl)
+  }
+
   agregarAlumno(obj:Alumnos):Observable<any>{
-    return this.htpp.post(baseUrl + "/agregarAlumno" , obj);
+    return this.htpp.post(baseUrl , obj);
   }
 
   actualizarAlumno(obj:Alumnos):Observable<any>{
