@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Cursos } from 'src/app/models/cursos';
 import { Docentes } from 'src/app/models/docentes';
 import { Sexo } from 'src/app/models/sexo';
@@ -29,7 +29,7 @@ export class UpdateDocentesComponent {
  fechaNacimiento = new Date();
 
   //Json para registrar o actualizar
-  objDocente:Docentes = {
+  objDocentes:Docentes = {
     nombre:"",
     apellidoMa:"",
     apellidoPa:"",
@@ -49,14 +49,18 @@ export class UpdateDocentesComponent {
     private formBuilder:FormBuilder,
     private docentesService:DocentesService,
     private tokenService: TokenService, 
+    private cursoService: CursosService,
     private utilService:UtilService,
-    private cursoSrevice:CursosService){
-      this.utilService.listaSexo().subscribe(
-        response => this.lstSexo = response
+    @Inject(MAT_DIALOG_DATA) public data:any){
+      utilService.listaSexo().subscribe(
+        x => this.lstSexo = x
       )
-      this.cursoSrevice.listarCurso().subscribe(
-        response => this.lstCurso = response
+      cursoService.listarCurso().subscribe(
+        x => this.lstCurso = x
       )
+      this.objUsuario.idUsuario =tokenService.getUserId();
+      this.objDocentes = data;
+
 
     }
 
@@ -77,9 +81,9 @@ export class UpdateDocentesComponent {
         validaCurso: ['',[Validators.min(1)]]
       });
 
-      actualizarDocente(){
+      actualizarDocentes(){
         if(this.formActualiza.valid){
-          this.docentesService.actualizarDocente(this.objDocente).subscribe(
+          this.docentesService.actualizarDocente(this.objDocentes).subscribe(
             x=>{
               Swal.fire('Mensaje',x.mensaje,'info');
             }

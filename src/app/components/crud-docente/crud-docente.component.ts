@@ -29,7 +29,7 @@ export class CrudDocenteComponent {
   dataSource:any;
 
   @ViewChild(MatPaginator, {static:true}) paginator!:MatPaginator; 
-  displayedColumns = ["idDocente","nombre","apellidos","curso","telefono","edad","dni","sexo","correo","fecha","acciones"];
+  displayedColumns = ["idDocente","nombre","apellidos","curso","telefono","edad","dni","sexo","correo","acciones"];
 
   constructor(private formBuilder:FormBuilder,
     private dialogServices:MatDialog,
@@ -41,11 +41,10 @@ export class CrudDocenteComponent {
     }
 
 
-  ngOnInit():void{}
-
-  consultaDocente(){
-    this.refresTable();
+  ngOnInit():void{
+    this.listarDocente();
   }
+
 
   eliminarDocente(obj:Docentes){
     Swal.fire({
@@ -61,7 +60,7 @@ export class CrudDocenteComponent {
       if(result.isConfirmed){
         this.docenteService.eliminarDocente(obj.idDocente || 0).subscribe(
           x => {
-            this.refresTable();
+            this.listarDocente();
             Swal.fire('Mensaje', x.mensaje, 'info');
           }
         );
@@ -73,7 +72,7 @@ export class CrudDocenteComponent {
     const  dialogRef = this.dialogServices.open(addDocente);
     dialogRef.afterClosed().subscribe(result => {
       if(result === 1){
-        this.refresTable();
+        this.listarDocente();
       }
     });
 
@@ -89,14 +88,14 @@ export class CrudDocenteComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result === 1){
-        this.refresTable(); 
+        this.listarDocente(); 
           }
     });
   }
 
 
-  private refresTable(){
-    this.docenteService.consultarDocentePorNombre(this.filtro==""?"todos":this.filtro).subscribe(
+  listarDocente(){
+    this.docenteService.listarDocente().subscribe(
       x=>{
         this.dataSource = new MatTableDataSource<Docentes>(x);
         this.dataSource.paginator = this.paginator;

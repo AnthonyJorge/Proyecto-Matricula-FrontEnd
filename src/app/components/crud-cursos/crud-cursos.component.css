@@ -1,11 +1,24 @@
-.search{
-    padding-top: 15px;
-    padding-left: 10px;
-  }
-  
+
+.input{
+  --mdc-filled-text-field-caret-color: #000000;
+  --mdc-filled-text-field-focus-active-indicator-color: #000000;
+  --mdc-filled-text-field-focus-label-text-color: rgba(0, 0, 0, 0.87);
+}
+
+
   .buttom-primary{
-    left: 10px;
-    background-color: black;
-    color: white;
-  }
-  
+  left: 10px;
+  background-color: rgb(77, 75, 75);
+  color: white;
+}
+.add{
+  left: 10px;
+  width: 150px;
+}
+.mat-mdc-raised-button.mat-primary {
+      background-color: rgb(77, 75, 75);
+}
+
+.mat-mdc-icon-button{
+  color: #df380e;
+}

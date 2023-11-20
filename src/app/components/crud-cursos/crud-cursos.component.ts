@@ -19,16 +19,14 @@ import { Usuario } from 'src/app/models/usuario.model';
 })
 export class CrudCursosComponent implements OnInit {
 
-  //Para el filtro 
-  filtro: string ="";
   
   objUsuario: Usuario = {};
 
-  //filtro
+//listar
   dataSource:any;
 
   @ViewChild(MatPaginator, {static:true}) paginator!:MatPaginator; 
-  displayedColumns = ["idCurso","nombre","grado","fecha","acciones"];
+  displayedColumns = ["idCurso","nombre","grado","acciones"];
 
   constructor(private formBuilder:FormBuilder,
     private dialogServices:MatDialog,
@@ -40,11 +38,10 @@ export class CrudCursosComponent implements OnInit {
     }
 
 
-  ngOnInit():void{}
-
-  consultaCurso(){
-    this.refresTable();
+  ngOnInit():void{
+    this.listarCursos();
   }
+
 
   eliminarCurso(obj:Cursos){
     Swal.fire({
@@ -60,7 +57,7 @@ export class CrudCursosComponent implements OnInit {
       if(result.isConfirmed){
         this.cursosService.eliminarCurso(obj.idCurso || 0).subscribe(
           x => {
-            this.refresTable();
+            this.listarCursos();
             Swal.fire('Mensaje', x.mensaje, 'info');
           }
         );
@@ -72,7 +69,7 @@ export class CrudCursosComponent implements OnInit {
     const  dialogRef = this.dialogServices.open(addCursos);
     dialogRef.afterClosed().subscribe(result => {
       if(result === 1){
-        this.refresTable();
+        this.listarCursos();
       }
     });
 
@@ -88,14 +85,14 @@ export class CrudCursosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result === 1){
-        this.refresTable(); 
+        this.listarCursos(); 
           }
     });
   }
 
 
-  private refresTable(){
-    this.cursosService.consultarPorNombre(this.filtro==""?"todos":this.filtro).subscribe(
+  listarCursos(){
+    this.cursosService.listarCurso().subscribe(
       x=>{
         this.dataSource = new MatTableDataSource<Cursos>(x);
         this.dataSource.paginator = this.paginator;

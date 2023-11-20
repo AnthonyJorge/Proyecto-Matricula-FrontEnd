@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-width: 800px;
+    min-height: 260px;
+  }
+  
+  .container > * {
+    width: 100%;
+  }
+  
+  .form {
+    display: flex;
+    padding-top: 6px;
+  }
+  
+  .mat-form-field {
+    font-size: 12px;
+    flex-grow: 1;
+  }
+  
+  .input{
+    --mdc-filled-text-field-caret-color: #000000;
+    --mdc-filled-text-field-focus-active-indicator-color: #000000;
+    --mdc-filled-text-field-focus-label-text-color: rgba(0, 0, 0, 0.87);
+  }
+  
+  .mat-mdc-raised-button.mat-primary {
+    background-color: rgb(77, 75, 75);
+  }
+    
+  .mat-mdc-button:not(:disabled) {
+    color: black
+  }

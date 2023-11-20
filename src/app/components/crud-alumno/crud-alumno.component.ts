@@ -21,16 +21,12 @@ import { UpdateAlumnosComponent } from '../update-alumnos/update-alumnos.compone
 export class CrudAlumnoComponent  implements OnInit {
 
   
-  //Para el filtro 
-  filtro: string ="";
   
   objUsuario: Usuario = {};
-
-  //filtro
-  dataSource:any;
+  dataSource : any;
 
   @ViewChild(MatPaginator, {static:true}) paginator!:MatPaginator; 
-  displayedColumns = ["idAlumno","nombre","apellidos","edad","dni","sexo","fechaNacimiento","Fecha","acciones"];
+  displayedColumns = ["idAlumno","nombre","apellidos","edad","dni","sexo","fechaNacimiento","acciones"];
 
   constructor(private formBuilder:FormBuilder,
     private dialogServices:MatDialog,
@@ -41,10 +37,15 @@ export class CrudAlumnoComponent  implements OnInit {
       this.objUsuario.idUsuario = tokenService.getUserId();
     }
 
-  ngOnInit():void{}
+  ngOnInit():void{
+    this.listadoAlumnos();
+  }
 
-  consultarAlumno(){
-    this.refresTable();
+  listadoAlumnos(){
+    this.alumnoService.listarAlumno().subscribe(datos => {
+      this.dataSource = new MatTableDataSource<Alumnos>(datos);
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   eliminarAlumno(obj:Alumnos){
@@ -61,7 +62,7 @@ export class CrudAlumnoComponent  implements OnInit {
       if(result.isConfirmed){
         this.alumnoService.eliminarAlumno(obj.idAlumno || 0).subscribe(
           x => {
-            this.refresTable();
+            this.listadoAlumnos();
             Swal.fire('Mensaje', x.mensaje, 'info');
           }
         );
@@ -73,35 +74,22 @@ export class CrudAlumnoComponent  implements OnInit {
     const  dialogRef = this.dialogServices.open(addAlumnos);
     dialogRef.afterClosed().subscribe(result => {
       if(result === 1){
-        this.refresTable();
+        this.listadoAlumnos();
       }
     });
 
 }
 
-  actualizarAlumno(obj:Alumnos){
-    this.alumnoService.actualizarAlumno(obj).subscribe();
-  }
-
   UpdateAlumno(obj:Alumnos){
     const dialogRef = this.dialogServices.open(UpdateAlumnosComponent,{data:obj});
     dialogRef.afterClosed().subscribe(result => {
       if(result === 1){
-        this.refresTable(); 
+        this.listadoAlumnos(); 
           }
     });
   }
 
 
-  private refresTable(){
-    this.alumnoService.consultarAlumnoPorNombre(this.filtro==""?"todos":this.filtro).subscribe(
-      x=>{
-        this.dataSource = new MatTableDataSource<Alumnos>(x);
-        this.dataSource.paginator = this.paginator;
-      }
-    );
-
-  }
 
 
 }

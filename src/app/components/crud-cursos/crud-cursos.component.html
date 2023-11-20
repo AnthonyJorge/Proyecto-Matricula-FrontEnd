@@ -7,24 +7,8 @@
         </mat-toolbar>  
     </div>
 
-    <div class="search">
-        <mat-form-field > 
-            <mat-label>Nombre Curso</mat-label>
-            <input matInput [(ngModel)]="filtro">
-            <button *ngIf="filtro" matSuffix mat-icon-button aria-label="Clear" (click)="filtro=''">
-            <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-
-        <button mat-mini-fab matTooltip="Accent" class="buttom-primary" (click)="consultaCurso()" 
-                    id="id_btn_filtrar"  aria-label="Example mini fab with a heart icon">
-                        <mat-icon>search</mat-icon>
-        </button>
-
-    </div>
-
     <div class="row" style="margin-top: 3% ; margin-left:3px">
-        <button mat-raised-button color="primary" type="button"  (click)="openAddCursos()" class='btn btn-primary btn-sm' style="width: 150px">
+        <button mat-raised-button color="primary" type="button"   (click)="openAddCursos()" class="add" >
         Registrar  <mat-icon>add</mat-icon></button>      
 </div>
 
@@ -43,21 +27,16 @@
                     <mat-header-cell  mat-header-cell *matHeaderCellDef >Grado</mat-header-cell>
                     <mat-cell *matCellDef="let aux" >{{ aux.grado!.nombre }}</mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="fecha">
-                    <mat-header-cell  mat-header-cell *matHeaderCellDef >Fecha</mat-header-cell>
-                    <mat-cell *matCellDef="let aux" >{{ aux.fechaRegistro | date:"dd/MM/yyyy"}}</mat-cell>
-                </ng-container>
-
                 <ng-container matColumnDef="acciones">
-                    <mat-header-cell  mat-header-cell *matHeaderCellDef >Acciones</mat-header-cell>
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
 
                     <mat-cell *matCellDef="let aux; let i=index;">
 
-                        <button mat-icon-button color="accent" (click)="UpdateCurso(aux)">
+                        <button mat-icon-button (click)="UpdateCurso(aux)">
                             <mat-icon aria-label="Edit">edit</mat-icon>
                         </button>
                 
-                        <button mat-icon-button color="accent" (click)="eliminarCurso(aux)">
+                        <button mat-icon-button (click)="eliminarCurso(aux)">
                             <mat-icon aria-label="Delete">delete</mat-icon>
                         </button>
                     </mat-cell>

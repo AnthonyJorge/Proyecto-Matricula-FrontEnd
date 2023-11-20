@@ -6,24 +6,9 @@
         </mat-toolbar>  
     </div>
 
-    <div class="search">
-        <mat-form-field > 
-            <mat-label>Nombre Docente</mat-label>
-            <input matInput [(ngModel)]="filtro">
-            <button *ngIf="filtro" matSuffix mat-icon-button aria-label="Clear" (click)="filtro=''">
-        <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
-
-        <button mat-mini-fab matTooltip="Accent" class="buttom-primary" (click)="consultaDocente()" 
-                    id="id_btn_filtrar"  aria-label="Example mini fab with a heart icon">
-                        <mat-icon>search</mat-icon>
-        </button>
-
-    </div>
 
     <div class="row" style="margin-top: 3% ; margin-left:3px">
-        <button mat-raised-button color="primary" type="button"  (click)="openAddDocente()" class='btn btn-primary btn-sm' style="width: 150px">
+        <button mat-raised-button color="primary" type="button"  (click)="openAddDocente()"class="add">
         Registrar  <mat-icon>add</mat-icon></button>      
     </div>
 
@@ -40,7 +25,7 @@
                 </ng-container>
                 <ng-container matColumnDef="apellidos">
                     <mat-header-cell  mat-header-cell *matHeaderCellDef >apellidos</mat-header-cell>
-                    <mat-cell *matCellDef="let aux" >{{ aux.apellidoMa + aux.apellidoPa}}</mat-cell>
+                    <mat-cell *matCellDef="let aux" >{{ aux.apellidoPa +" "+ aux.apellidoMa}}</mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="curso">
                     <mat-header-cell  mat-header-cell *matHeaderCellDef >Curso</mat-header-cell>
@@ -65,10 +50,6 @@
                 <ng-container matColumnDef="correo">
                     <mat-header-cell  mat-header-cell *matHeaderCellDef >Correo</mat-header-cell>
                     <mat-cell *matCellDef="let aux" >{{ aux.correo }}</mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="Fecha">
-                    <mat-header-cell  mat-header-cell *matHeaderCellDef >Fecha</mat-header-cell>
-                    <mat-cell *matCellDef="let aux" >{{ aux.fechaRegistro | date:"dd/MM/yyyy"}}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="acciones">

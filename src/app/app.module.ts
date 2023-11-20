@@ -26,6 +26,11 @@ import { UpdateDocentesComponent } from './components/update-docentes/update-doc
 import { UpdateMatriculasComponent } from './components/update-matriculas/update-matriculas.component';
 import { addDocente } from './components/add-docentes/add-docentes.component';
 import { addMatricula } from './components/add-matriculas/add-matriculas.component';
+import { ConsultarAlumnoComponent } from './components/consultar-alumno/consultar-alumno.component';
+import { ConsultarDocenteComponent } from './components/consultar-docente/consultar-docente.component';
+import { ConsultarCursoComponent } from './components/consultar-curso/consultar-curso.component';
+import { ConsultarMatriculaComponent } from './components/consultar-matricula/consultar-matricula.component';
+import { ReporteMatriculaComponent } from './components/reporte-matricula/reporte-matricula.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +43,11 @@ import { addMatricula } from './components/add-matriculas/add-matriculas.compone
     CrudCursosComponent,
     CrudDocenteComponent,
     CrudMatriculaComponent,
+    ConsultarAlumnoComponent,
+    ConsultarDocenteComponent,
+    ConsultarCursoComponent,
+    ConsultarMatriculaComponent,
+    ReporteMatriculaComponent,
     addCursos,
     addAlumnos,
     addDocente,

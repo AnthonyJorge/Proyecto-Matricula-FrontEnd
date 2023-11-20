@@ -43,7 +43,7 @@ fechaNacimiento = new Date();
         this.utilService.listaSexo().subscribe(
           response => this.lstSexo = response
         )
-
+        this.objUsuario.idUsuario = tokenService.getUserId();
       }
 
       onNoClick():void{

@@ -4,11 +4,46 @@ import Swal from 'sweetalert2'
 import { AuthService } from '../security/auth.service';
 import { LoginUsuario } from '../security/login-usuario';
 import { TokenService } from '../security/token.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition(':enter, :leave', [
+        animate(300)
+      ])
+    ]),
+    trigger('fadeInScale', [
+      state('void', style({
+        transform: 'scale(0.5)',
+        opacity: 0
+      })),
+      transition(':enter, :leave', [
+        animate('0.5s ease-in-out')
+      ])
+    ]),
+    trigger('buttonAnimation', [
+      state('void', style({
+        transform: 'scale(1)',
+        opacity: 1
+      })),
+      transition(':enter', [
+        animate('0.3s ease-out')
+      ]),
+      transition(':leave', [
+        animate('0.3s ease-in', style({
+          transform: 'scale(0.9)',
+          opacity: 0
+        }))
+      ])
+    ])
+  ]
 })
 export class LoginComponent implements OnInit {
 
@@ -36,8 +71,47 @@ export class LoginComponent implements OnInit {
    }
 
   }
-
+  @Component({
+    selector: 'app-tu-componente',
+    templateUrl: './tu-componente.component.html',
+    styleUrls: ['./tu-componente.component.css'],
+    animations: [
+      trigger('fadeInOut', [
+        state('void', style({
+          opacity: 0
+        })),
+        transition(':enter, :leave', [
+          animate(300)
+        ])
+      ]),
+      trigger('fadeInScale', [
+        state('void', style({
+          transform: 'scale(0.5)',
+          opacity: 0
+        })),
+        transition(':enter, :leave', [
+          animate('0.5s ease-in-out')
+        ])
+      ]),
+      trigger('buttonAnimation', [
+        state('void', style({
+          transform: 'scale(1)',
+          opacity: 1
+        })),
+        transition(':enter', [
+          animate('0.3s ease-out')
+        ]),
+        transition(':leave', [
+          animate('0.3s ease-in', style({
+            transform: 'scale(0.9)',
+            opacity: 0
+          }))
+        ])
+      ])
+    ]
+  })
   onLogin(): void {
+    console.log("sadasdasda");
     this.authService.login(this.loginUsuario).subscribe(
       (data:any) => {
           this.isLogged = true;

@@ -1,6 +1,12 @@
 <app-menu></app-menu>
 <div class="container text-center"  >
-    <img src="./assets/logoSistema.jpg" style="width: 46%; height: 46%">
-    <div *ngIf="isLogged; else loggedOut"><h5>Bienvenido {{nombre}} :    {{nombreUsuario}}</h5></div>
-    <ng-template #loggedOut><h5>Para ingresar debe Inicia Sesión</h5></ng-template>
+   
+    <div *ngIf="isLogged; else loggedOut">
+        <img src="./assets/logoinicio.jpg"style="width: 49%; height: 64%" >
+        <h3>Bienvenido {{nombre}} :    {{nombreUsuario}}</h3>
+    </div>
+    <ng-template #loggedOut><h1>Sistema de matricula "SIS COLLEGE"</h1>
+        <img src="./assets/logoSistema.jpg" style="width: 44%; height: 44%">
+        <h3>Para ingresar debe Inicia Sesión</h3></ng-template>
+   
 </div>

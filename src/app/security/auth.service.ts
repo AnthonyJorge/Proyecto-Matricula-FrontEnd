@@ -11,11 +11,10 @@ const authURL = AppSettings.API_ENDPOINT+ '/auth';
   providedIn: 'root'
 })
 export class AuthService {
- 
 
   constructor(private httpClient: HttpClient) { }
 
   public login(loginUsuario: LoginUsuario): Observable<JwtDTO> {
-    return this.httpClient.post<JwtDTO>(authURL + '/login', loginUsuario);
+    return this.httpClient.post<JwtDTO>("http://localhost:8090/url/auth/login", loginUsuario);
   }
 }

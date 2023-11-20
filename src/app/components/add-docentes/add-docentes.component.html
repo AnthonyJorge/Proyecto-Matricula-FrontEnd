@@ -1,12 +1,12 @@
 <div class="container">
     <form  class="mat-dialog-content"  id="iFormAlumno" [formGroup]="formsRegistra" >
     <div class="row">
-            <mat-toolbar color="primary" >    
-            <span>Registra Docente</span>    
+        <mat-toolbar style="background-color: rgb(48, 52, 52);" >    
+            <span style="color: rgb(255, 255, 255);">Registra Docente</span>    
             </mat-toolbar>  
     </div>
         <div  class="row"  style="margin-top: 3%">
-            <mat-form-field class="col-md-8">
+            <mat-form-field class=" input col-md-4">
                     <mat-label>Nombre</mat-label>
                     <input  matInput [(ngModel)] ="objDocente.nombre"  formControlName="validaNombre" name="nombre" >
                     <mat-hint style="color:red" *ngIf="formsRegistra.controls.validaNombre.touched">
@@ -18,19 +18,7 @@
                         </span>
                     </mat-hint>
             </mat-form-field>
-            <mat-form-field class="col-md-8">
-                <mat-label>Apellido Materno</mat-label>
-                <input  matInput [(ngModel)] ="objDocente.apellidoMa"  formControlName="validaApellidoMa" name="apellidoMa" >
-                <mat-hint style="color:red" *ngIf="formsRegistra.controls.validaNombre.touched">
-                    <span *ngIf="formsRegistra.controls.validaApellidoMa.hasError('required')">
-                    El Apellido Materno es requerido
-                    </span>
-                    <span *ngIf="formsRegistra.controls.validaApellidoMa.hasError('pattern')">
-                    El Apellido Materno es 3 a 30 caracteres
-                    </span>
-                </mat-hint>
-            </mat-form-field>
-            <mat-form-field class="col-md-8">
+            <mat-form-field class="input col-md-4">
                 <mat-label>Apellido Paterno</mat-label>
                 <input  matInput [(ngModel)] ="objDocente.apellidoPa"  formControlName="validaApellidoPa" name="apellidoPa" >
                 <mat-hint style="color:red" *ngIf="formsRegistra.controls.validaApellidoPa.touched">
@@ -42,7 +30,19 @@
                     </span>
                 </mat-hint>
             </mat-form-field>
-            <mat-form-field class="col-md-8">
+            <mat-form-field class="input col-md-4">
+                <mat-label>Apellido Materno</mat-label>
+                <input  matInput [(ngModel)] ="objDocente.apellidoMa"  formControlName="validaApellidoMa" name="apellidoMa" >
+                <mat-hint style="color:red" *ngIf="formsRegistra.controls.validaNombre.touched">
+                    <span *ngIf="formsRegistra.controls.validaApellidoMa.hasError('required')">
+                    El Apellido Materno es requerido
+                    </span>
+                    <span *ngIf="formsRegistra.controls.validaApellidoMa.hasError('pattern')">
+                    El Apellido Materno es 3 a 30 caracteres
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+            <mat-form-field class="input col-md-4">
                     <mat-label>Edad</mat-label>
                     <input  matInput [(ngModel)] ="objDocente.edad"  formControlName="validaEdad" name="edad" >
                     <mat-hint style="color:red" *ngIf="formsRegistra.controls.validaNombre.touched">
@@ -54,7 +54,7 @@
                         </span>
                     </mat-hint>
             </mat-form-field>
-            <mat-form-field class="col-md-8">
+            <mat-form-field class="input col-md-4">
                         <mat-label>DNI</mat-label>
                         <input  matInput [(ngModel)] ="objDocente.dni"  formControlName="validaDNI" name="dni" >
                         <mat-hint style="color:red" *ngIf="formsRegistra.controls.validaNombre.touched">
@@ -66,18 +66,18 @@
                             </span>
                         </mat-hint>
             </mat-form-field>
-            <mat-form-field class="col-md-8">
+            <mat-form-field class="input col-md-4">
                 <mat-label>Correo</mat-label>
-                <input  matInput [(ngModel)] ="objDocente.edad"  formControlName="validaCorreo" name="correo" >
+                <input  matInput [(ngModel)] ="objDocente.correo"  formControlName="validaCorreo" name="correo" >
                 <mat-hint style="color:red" *ngIf="formsRegistra.controls.validaCorreo.touched">
                     <span *ngIf="formsRegistra.controls.validaCorreo.hasError('required')">
                     La Correo es requerido
                     </span>
                 </mat-hint>
             </mat-form-field>
-            <mat-form-field class="col-md-8">
+            <mat-form-field class="input col-md-4">
             <mat-label>Telefono</mat-label>
-            <input  matInput [(ngModel)] ="objDocente.edad"  formControlName="validatelefono" name="telefono" >
+            <input  matInput [(ngModel)] ="objDocente.telefono"  formControlName="validatelefono" name="telefono" >
             <mat-hint style="color:red" *ngIf="formsRegistra.controls.validatelefono.touched">
                 <span *ngIf="formsRegistra.controls.validatelefono.hasError('required')">
                 El Telefono es requerido
@@ -87,10 +87,8 @@
                 </span>
             </mat-hint>
             </mat-form-field>
-        </div>
 
-        <div class="row" style="margin-top: 3%">
-            <mat-form-field class="col-md-4">
+            <mat-form-field class="input col-md-4">
                 <mat-label>Sexo</mat-label>
                 <mat-select [(ngModel)] = "objDocente.sexo!.idSexo" formControlName="validaSexo" name="sexo">
                     <mat-option value="-1"> [Seleccione] </mat-option>
@@ -104,10 +102,7 @@
                     </span>
                 </mat-hint>  
             </mat-form-field> 
-        </div>
-
-        <div class="row" style="margin-top: 3%">
-            <mat-form-field class="col-md-4">
+            <mat-form-field class="input col-md-4">
                 <mat-label>Curso</mat-label>
                 <mat-select [(ngModel)] = "objDocente.curso!.idCurso" formControlName="validaCurso" name="curso">
                     <mat-option value="-1"> [Seleccione] </mat-option>

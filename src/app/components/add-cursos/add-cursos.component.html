@@ -1,12 +1,12 @@
 <div class="container">
     <form  class="mat-dialog-content"  id="iFormCurso" [formGroup]="formsRegistra" >
     <div class="row">
-            <mat-toolbar color="primary" >    
-            <span>Registra Curso</span>    
+            <mat-toolbar style="background-color: rgb(48, 52, 52);" >    
+                <span style="color: rgb(255, 255, 255);"> Registra Curso</span>    
             </mat-toolbar>  
     </div>
         <div  class="row"  style="margin-top: 3%">
-                <mat-form-field class="col-md-8">
+                <mat-form-field class="input col-md-4" >
                     <mat-label>Nombre</mat-label>
                     <input  matInput [(ngModel)] ="objCurso.nombre"  formControlName="validaNombre" name="nombre" >
                     <mat-hint style="color:red" *ngIf="formsRegistra.controls.validaNombre.touched">
@@ -18,10 +18,8 @@
                         </span>
                     </mat-hint>
                 </mat-form-field>
-        </div>
-        <div class="row" style="margin-top: 3%">
-    
-            <mat-form-field class="col-md-4">
+
+            <mat-form-field class="input col-md-4" >
                 <mat-label>Grado</mat-label>
                 <mat-select [(ngModel)] = "objCurso.grado!.idGrado" formControlName="validaGrado" name="grado">
                     <mat-option value="-1"> [Seleccione] </mat-option>
