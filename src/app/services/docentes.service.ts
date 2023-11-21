@@ -6,8 +6,10 @@ import { Docentes } from '../models/docentes';
 
 
 const  API_ENDPOINT='http://localhost:8090/url';
+const  API_ENDPOINT_CONSULT='http://localhost:8090/url';
 const baseUrl = API_ENDPOINT + '/crudDocente';
-const baseConsultUrl = API_ENDPOINT + '/consultaDocente';
+const baseConsultUrl = API_ENDPOINT_CONSULT + '/consultaDocente';
+const baseUrlMatriculaDocente = API_ENDPOINT_CONSULT + '/crudMatricula';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +47,13 @@ export class DocentesService {
 
     return this.http.get<Docentes[]>(baseConsultUrl + "/consultaDocenteDinamica", {params} );
   }
+
+  consultaFiltro(filtro:string, page: number, size: number):Observable<Docentes[]>{
+    if (filtro == ""){
+      return  this.http.get<Docentes[]>(baseUrlMatriculaDocente +'/listaDocente?page='+ page+'&size=' + size); 
+    }else{
+      return  this.http.get<Docentes[]>(baseUrlMatriculaDocente +'/listaDocente/'+filtro+'?page='+ page+'&size=' + size); 
+    }
+}  
 
 }

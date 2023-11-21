@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
 import { CrudAlumnoComponent } from './components/crud-alumno/crud-alumno.component';
 import { CrudCursosComponent } from './components/crud-cursos/crud-cursos.component';
 import { CrudDocenteComponent } from './components/crud-docente/crud-docente.component';
-import { CrudMatriculaComponent } from './components/crud-matricula/crud-matricula.component';
 import { UpdateCursosComponent } from './components/update-cursos/update-cursos.component';
 import { MatIconModule } from '@angular/material/icon';
 import { addCursos } from './components/add-cursos/add-cursos.component';
@@ -23,14 +22,13 @@ import { IndexComponent } from './index/index.component';
 import { addAlumnos } from './components/add-alumnos/add-alumnos.component';
 import { UpdateAlumnosComponent } from './components/update-alumnos/update-alumnos.component';
 import { UpdateDocentesComponent } from './components/update-docentes/update-docentes.component';
-import { UpdateMatriculasComponent } from './components/update-matriculas/update-matriculas.component';
 import { addDocente } from './components/add-docentes/add-docentes.component';
-import { addMatricula } from './components/add-matriculas/add-matriculas.component';
 import { ConsultarAlumnoComponent } from './components/consultar-alumno/consultar-alumno.component';
 import { ConsultarDocenteComponent } from './components/consultar-docente/consultar-docente.component';
 import { ConsultarCursoComponent } from './components/consultar-curso/consultar-curso.component';
-import { ConsultarMatriculaComponent } from './components/consultar-matricula/consultar-matricula.component';
 import { ReporteMatriculaComponent } from './components/reporte-matricula/reporte-matricula.component';
+import { ModalAlumnoComponent } from './components/modal-alumno/modal-alumno.component';
+import { ModalDocenteComponent } from './components/modal-docente/modal-docente.component';
 
 @NgModule({
   declarations: [
@@ -42,20 +40,18 @@ import { ReporteMatriculaComponent } from './components/reporte-matricula/report
     CrudAlumnoComponent,
     CrudCursosComponent,
     CrudDocenteComponent,
-    CrudMatriculaComponent,
     ConsultarAlumnoComponent,
     ConsultarDocenteComponent,
     ConsultarCursoComponent,
-    ConsultarMatriculaComponent,
     ReporteMatriculaComponent,
     addCursos,
     addAlumnos,
     addDocente,
-    addMatricula,
     UpdateAlumnosComponent,
     UpdateCursosComponent,
     UpdateDocentesComponent,
-    UpdateMatriculasComponent
+    ModalAlumnoComponent,
+    ModalDocenteComponent
   ],
   imports: [
     BrowserModule, 

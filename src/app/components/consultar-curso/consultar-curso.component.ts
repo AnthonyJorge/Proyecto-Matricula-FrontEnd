@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Cursos } from 'src/app/models/cursos';
 import { Grado } from 'src/app/models/grado';
 import { CursosService } from 'src/app/services/cursos.service';
+import { ReporteService } from 'src/app/services/reporte.service';
 import { UtilService } from 'src/app/services/util.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class ConsultarCursoComponent {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   displayedColumns = [
-    "idCurso","nombre","grado"
+    "idCurso","nombre","grado","fecha"
   ];
 
 
@@ -30,7 +31,8 @@ export class ConsultarCursoComponent {
 
   constructor(
     private consultarCurso:CursosService,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private reportService:ReporteService
   ) { }
 
   ngOnInit(): void {
@@ -56,5 +58,26 @@ export class ConsultarCursoComponent {
     this.nombre = '';
     this.grado = '-1';
     this.consultarCursos();
+  }
+
+  OnImprimir(){
+    const encabezado = ["ID","Nombre","Grado","Fecha Registro"]
+    this.consultarCurso.listaConsultaCurso(this.nombre,this.grado).subscribe(
+      data => {
+        const cuerpo = Object(data).map(
+          (obj:any) =>{
+            const datos = [
+              obj.idCurso,
+              obj.nombre,
+              obj.grado!.nombre,
+              obj.fechaRegistro
+            ]
+            return datos;
+          }
+      
+        )
+        this.reportService.imprimir(encabezado,cuerpo,"Listado de Curso",true);
+        }
+        )
   }
 }

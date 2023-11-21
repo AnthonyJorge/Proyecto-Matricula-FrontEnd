@@ -1,1 +1,100 @@
-<p>reporte-matricula works!</p>
+<app-menu></app-menu>
+<div class="container mat-elevation-z7">
+
+  <div class="row">
+    <mat-toolbar style="background-color: rgb(48, 52, 52);" >
+      <span  style="color: rgb(255, 255, 255);">Reporte Matricula </span>
+    </mat-toolbar>
+  </div>
+
+  <div class="container" style="margin-top: 2%;">
+      <div class="row">
+        <mat-label>Alumno</mat-label>
+      </div>
+      <div class="row" style="margin-top: 3%">
+        <mat-form-field class="input col-md-3">
+          <mat-label>Nombre</mat-label>
+          <input matInput [(ngModel)]="objAlumno.nombre">
+        </mat-form-field>
+        <mat-form-field class="input col-md-3">
+          <mat-label>Dni</mat-label>
+          <input matInput [(ngModel)]="objAlumno.dni">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="buscaAlumno()" class="btn btn-primary btn-sm">
+          Buscar
+        </button>
+      </div>
+
+    <div class="container" style="margin-top: 2%;">
+        <div class="row">
+            <mat-label>Docente</mat-label> 
+        </div>
+        <div class="row" style="margin-top: 3%">
+            <mat-form-field class=" input col-md-3">
+                <mat-label>Nombre</mat-label>
+                <input  matInput  [(ngModel)] ="objDocente.nombre">
+            </mat-form-field>
+            <mat-form-field class="input col-md-2">
+                <mat-label>Dni</mat-label>
+                <input  matInput  [(ngModel)] ="objDocente.dni">
+            </mat-form-field>
+            <mat-form-field class="input col-md-2">
+                <mat-label>Grado</mat-label>
+                <input  matInput  [(ngModel)] ="objDocente.curso?.grado!.nombre">
+            </mat-form-field>
+            <div class="col-3 d-flex justify-content-center align-items-center" style="gap: 16px">
+            <button mat-raised-button color="primary" (click)="buscaDocente()" type="button" class='btn btn-primary btn-sm' style="width: 20px;">Buscar</button>
+            
+            <button mat-fab color="" (click)="agregarDocente()"><mat-icon>add</mat-icon></button>
+          </div>
+        </div>
+    </div> 
+          
+   </div>  
+    
+   <div class="container" style="margin-top: 2%;">
+    <div class="row">
+    <button mat-raised-button color="primary" (click)="registrarMatricula()" type="button" class='btn btn-primary btn-sm' style="width: 1100px">Registrar Matricula</button>
+    </div>
+    
+     </div>  
+
+     <div class="row" style="margin-top: 1%">
+        <mat-table  #table  class="mat-cell" [dataSource]="dataSource" >
+              <ng-container matColumnDef="idDocente">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Código</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.idDocente  }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="nombre">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Nombre</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.nombre}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="dni">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Dni</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.dni }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="curso">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Curso</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.curso!.nombre }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="grado">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Grado</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.curso!.grado!.nombre }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="actions">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >&nbsp;</mat-header-cell>
+                <mat-cell *matCellDef="let aux; let i=index;">
+                    <button mat-raised-button color="primary"  (click)="eliminarDocente(aux)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-cell>
+              </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
+  </div>
+     
+ 
+
+</div>

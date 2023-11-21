@@ -7,9 +7,9 @@ import { Alumnos } from '../models/alumnos';
 
 const  API_ENDPOINT='http://localhost:8090/url';
 const  API_ENDPOINT_CONSULT='http://localhost:8090/url';
-
 const baseUrl = API_ENDPOINT + '/crudAlumno';
 const baseConsultUrl = API_ENDPOINT_CONSULT + '/consultaAlumno';
+const baseUrlMatriculaAlumno = API_ENDPOINT + '/crudMatricula';
 
 
 @Injectable({
@@ -45,5 +45,13 @@ export class AlumnosService {
 
     return this.http.get<Alumnos[]>(baseConsultUrl + "/consultaAlumnoDinamica", {params} );
   }
+
+  consultaFiltro(filtro:string, page: number, size: number):Observable<Alumnos[]>{
+    if (filtro == ""){
+      return  this.http.get<Alumnos[]>(baseUrlMatriculaAlumno +'/listaAlumno?page='+ page+'&size=' + size); 
+    }else{
+      return  this.http.get<Alumnos[]>(baseUrlMatriculaAlumno +'/listaAlumno/'+filtro+'?page='+ page+'&size=' + size); 
+    }
+}  
 
 }

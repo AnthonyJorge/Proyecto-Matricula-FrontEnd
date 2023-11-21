@@ -6,6 +6,7 @@ import { Docentes } from 'src/app/models/docentes';
 import { Sexo } from 'src/app/models/sexo';
 import { CursosService } from 'src/app/services/cursos.service';
 import { DocentesService } from 'src/app/services/docentes.service';
+import { ReporteService } from 'src/app/services/reporte.service';
 import { UtilService } from 'src/app/services/util.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class ConsultarDocenteComponent {
 
 
   displayedColumns = [
-    "idDocente","nombre","apellidos","curso","telefono","edad","dni","sexo"
+    "idDocente","nombre","apellidos","curso","telefono","edad","dni","sexo","fecha"
   ];
 
 
@@ -37,7 +38,8 @@ export class ConsultarDocenteComponent {
   constructor(
     private consultarDocente:DocentesService,
     private utilService: UtilService,
-    private cursoService:CursosService
+    private cursoService:CursosService,
+    private reportService:ReporteService
   ) { }
 
   ngOnInit(): void {
@@ -72,5 +74,35 @@ export class ConsultarDocenteComponent {
     this.sexo = '-1';
     this.curso = '-1';
     this.consultaDocente();
+  }
+
+  OnImprimir(){
+    const encabezado = ["ID","Nombre","Apellidos","Curso","Telefono","Dni","Edad","Sexo","Fecha Registro"]
+    this.consultarDocente.consultaDocente(  this.nombre,
+      this.apellidoPa,
+      this.dni,
+      this.sexo,
+      this.curso).subscribe(
+      data => {
+        const cuerpo = Object(data).map(
+          (obj:any) =>{
+            const datos = [
+              obj.idDocente,
+              obj.nombre,
+              obj.apellidoPa + " " +obj.apellidoMa ,
+              obj.curso!.nombre,
+              obj.telefono,
+              obj.dni,
+              obj.edad,
+              obj.sexo!.nombre,
+              obj.fechaRegistro
+            ]
+            return datos;
+          }
+      
+        )
+        this.reportService.imprimir(encabezado,cuerpo,"Listado de Docente",true);
+        }
+        )
   }
 }

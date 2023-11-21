@@ -20,8 +20,6 @@ import { MatTableDataSource } from '@angular/material/table';
 export class CrudDocenteComponent {
 
   
-  //Para el filtro 
-  filtro: string ="";
   
   objUsuario: Usuario = {};
 
@@ -29,7 +27,7 @@ export class CrudDocenteComponent {
   dataSource:any;
 
   @ViewChild(MatPaginator, {static:true}) paginator!:MatPaginator; 
-  displayedColumns = ["idDocente","nombre","apellidos","curso","telefono","edad","dni","sexo","correo","acciones"];
+  displayedColumns = ["idDocente","nombre","apellidos","curso","telefono","edad","dni","sexo","acciones"];
 
   constructor(private formBuilder:FormBuilder,
     private dialogServices:MatDialog,

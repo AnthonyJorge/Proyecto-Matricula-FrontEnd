@@ -34,6 +34,7 @@
 
                 <div class="col-3 d-flex justify-content-center align-items-center" style="gap: 16px">
                 <button mat-raised-button type="submit" color="primary" (click)="consultarAlumnos()">Filtrar</button>
+                <button mat-raised-button type="submit" color="primary"  (click)="OnImprimir()">Imprimir</button>
                 <button mat-fab color="accent" (click)="limpiarCampos()"><mat-icon>delete</mat-icon></button>
                 </div>
                 </div>
@@ -70,6 +71,10 @@
             <ng-container matColumnDef="fechaNacimiento">
                 <mat-header-cell  mat-header-cell *matHeaderCellDef >Fecha Nacimiento</mat-header-cell>
                 <mat-cell *matCellDef="let aux" >{{ aux.fechaNacimiento | date:"dd/MM/yyyy"}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="fecha">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Fecha Registro</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.fechaRegistro | date:"dd/MM/yyyy"}}</mat-cell>
             </ng-container>
     
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -1,0 +1,22 @@
+.input{
+    --mdc-filled-text-field-caret-color: #000000;
+    --mdc-filled-text-field-focus-active-indicator-color: #000000;
+    --mdc-filled-text-field-focus-label-text-color: rgba(0, 0, 0, 0.87);
+  }
+  
+  .mat-mdc-raised-button.mat-primary {
+    background-color: rgb(77, 75, 75);
+  }
+    
+  .mat-mdc-button:not(:disabled) {
+    color: black
+  }
+  .mat-mdc-raised-button.mat-primary {
+    background-color: rgb(0, 0, 0);
+}
+
+  .mat-mdc-fab.mat-accent, .mat-mdc-mini-fab.mat-accent {
+    --mdc-fab-container-color: rgb(0, 0, 0);
+    --mdc-fab-icon-color: rgb(255, 255, 255);
+    --mat-mdc-fab-color: #ffffff;
+}

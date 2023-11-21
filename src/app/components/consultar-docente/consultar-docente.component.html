@@ -45,6 +45,7 @@
 
                 <div class="col-3 d-flex justify-content-center align-items-center" style="gap: 16px">
                 <button mat-raised-button type="submit" color="primary" (click)="consultaDocente()">Filtrar</button>
+                <button mat-raised-button type="submit" color="primary"  (click)="OnImprimir()">Imprimir</button>
                 <button mat-fab color="accent" (click)="limpiarCampos()"><mat-icon>delete</mat-icon></button>
                 </div>
                 </div>
@@ -86,11 +87,11 @@
                 <mat-header-cell  mat-header-cell *matHeaderCellDef >Sexo</mat-header-cell>
                 <mat-cell *matCellDef="let aux" >{{ aux.sexo!.nombre }}</mat-cell>
             </ng-container>
-            <ng-container matColumnDef="correo">
-                <mat-header-cell  mat-header-cell *matHeaderCellDef >Correo</mat-header-cell>
-                <mat-cell *matCellDef="let aux" >{{ aux.correo }}</mat-cell>
+
+            <ng-container matColumnDef="fecha">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Fecha Registro</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.fechaRegistro | date:"dd/MM/yyyy"}}</mat-cell>
             </ng-container>
-    
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
         </mat-table>

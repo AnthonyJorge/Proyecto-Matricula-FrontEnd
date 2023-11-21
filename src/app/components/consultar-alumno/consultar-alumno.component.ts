@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Alumnos } from 'src/app/models/alumnos';
 import { Sexo } from 'src/app/models/sexo';
 import { AlumnosService } from 'src/app/services/alumnos.service';
+import { ReporteService } from 'src/app/services/reporte.service';
 import { UtilService } from 'src/app/services/util.service';
 
 @Component({
@@ -24,7 +25,8 @@ export class ConsultarAlumnoComponent implements OnInit  {
     "edad",
     "dni",
     "sexo",
-    "fechaNacimiento"
+    "fechaNacimiento",
+    "fecha"
   ];
 
 
@@ -37,7 +39,8 @@ export class ConsultarAlumnoComponent implements OnInit  {
 
   constructor(
     private consultarAlumno:AlumnosService,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private reportService:ReporteService
   ) { }
 
   ngOnInit(): void {
@@ -69,4 +72,33 @@ export class ConsultarAlumnoComponent implements OnInit  {
 
     this.consultarAlumnos();
   }
+
+  OnImprimir(){
+    const encabezado = ["ID","Nombre","Apellido","Dni","Edad","Sexo","Fecha Nacimiento","Fecha Registro"]
+    this.consultarAlumno.ConsultaAlumno( this.nombre,
+      this.apellidoPa,
+      this.dni,
+      this.sexo).subscribe(
+      data => {
+        const cuerpo = Object(data).map(
+          (obj:any) =>{
+            const datos = [
+              obj.idAlumno,
+              obj.nombre,
+              obj.apellidoPa,
+              obj.dni,
+              obj.edad,
+              obj.sexo!.nombre,
+              obj.fechaNacimiento,
+              obj.fechaRegistro
+            ]
+            return datos;
+          }
+      
+        )
+        this.reportService.imprimir(encabezado,cuerpo,"Listado de Alumno",true);
+        }
+        )
+  }
+
 }

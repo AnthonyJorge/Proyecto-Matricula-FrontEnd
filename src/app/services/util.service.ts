@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Grado } from '../models/grado';
 import { Sexo } from '../models/sexo';
-import { Turno } from '../models/turno';
 
 
 const baseUrlUtil = AppSettings.API_ENDPOINT+ '/util';
@@ -24,7 +23,4 @@ export class UtilService {
     return this.http.get<Sexo[]>(baseUrlUtil + "/listarSexo");
   }
   
-  listaTurno():Observable<Turno[]>{
-    return this.http.get<Turno[]>(baseUrlUtil + "/listarTurno");
-  }
 }

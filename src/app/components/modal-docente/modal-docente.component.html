@@ -1,0 +1,59 @@
+<div class="container">
+        <div class="row">
+            <mat-toolbar style="background-color: rgb(48, 52, 52);">    
+                <span style="color: rgb(255, 255, 255);">Busca Docente</span>    
+            </mat-toolbar>  
+        </div>
+        
+        <div class="row" style="margin-top: 3%">
+            <mat-form-field class="input col-md-5">
+                <mat-label >Dni</mat-label>
+                <input  matInput #txtVal (keyup)="applyFilter()" [(ngModel)] ="filtro"  >
+            </mat-form-field>
+        </div>
+
+        <div class="row" style="margin-top: 3%">
+            <mat-table  #table  class="mat-cell" [dataSource]="dataSource" >
+                    <ng-container matColumnDef="idDocente">
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef >Código</mat-header-cell>
+                    <mat-cell *matCellDef="let aux" >{{ aux.idDocente  }}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="nombre">
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef >Nombre</mat-header-cell>
+                    <mat-cell *matCellDef="let aux" >{{ aux.nombre}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="dni">
+                        <mat-header-cell  mat-header-cell *matHeaderCellDef >DNI</mat-header-cell>
+                        <mat-cell *matCellDef="let aux" >{{ aux.dni }}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="curso">
+                        <mat-header-cell  mat-header-cell *matHeaderCellDef >Curso</mat-header-cell>
+                        <mat-cell *matCellDef="let aux" >{{ aux.curso!.nombre}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="grado">
+                        <mat-header-cell  mat-header-cell *matHeaderCellDef >Grado</mat-header-cell>
+                        <mat-cell *matCellDef="let aux" >{{ aux.curso!.grado!.nombre}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="actions">
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef >&nbsp;</mat-header-cell>
+                    <mat-cell *matCellDef="let aux; let i=index;">
+                        <button mat-raised-button color="primary"  (click)="seleccioneDocente(aux)" >
+                            <mat-icon>check_circle_outline</mat-icon>
+                        </button>
+                    </mat-cell>
+                    </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+            </mat-table>
+
+            <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
+        </div>
+        
+        <div  mat-dialog-actions style="margin-top: 12%">
+            <button mat-button 
+                    (click)="onNoClick()"
+                    style="background-color: rgb(48, 52, 52);">
+                    <span style="color: rgb(255, 255, 255);">Salir</span>    
+            </button>
+    </div>
+</div>
